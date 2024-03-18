@@ -1,2 +1,2 @@
-[build-system]
+[build_system]
 requires = ["setuptools", "wheel", "pybind11"]
