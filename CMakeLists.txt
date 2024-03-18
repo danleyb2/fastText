@@ -16,7 +16,14 @@ set (fasttext_VERSION_MINOR 1)
 include_directories(fasttext)
 
 set(CMAKE_CXX_FLAGS " -pthread -std=c++20 -funroll-loops -O3 -march=native")
+# Find the compiler
+find_package(Compiler REQUIRED)
 
+# Check for GCC compiler
+if(${CMAKE_COMPILER_IS_GNUCC})
+  message(STATUS "Using GCC compiler, setting LTO version to 13.0")
+  set(CMAKE_LTO_FLAGS "-flto=13")  # Set LTO version for GCC
+endif()
 set(HEADER_FILES
     src/args.h
     src/autotune.h
